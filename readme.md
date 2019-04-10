@@ -31,22 +31,22 @@ const ObjectCache = new Cacheous({
 
 ## Api Reference
 
-### `getIdList(): Array<String>`
+### `getIdList(): Promise<Array<String>>`
 
 Returns the list of ID's in the model set.
 
-### `getById(id: String): Model`
+### `getById(id: String): Promise<Model>`
 
 Returns a Model Object that is at the specified ID.
 
-### `where(filter: Function): Array<Model>`
+### `where(filter: Function): Promise<Array<Model>>`
 
 Accepts a lambda to filter the objects in the store, and returns an array of objects for which the lambda is true.
 
-### `insert(m: Model): Model`
+### `insert(m: Model): Promise<Model>`
 
 Accepts an object of the model, validates it against the schema, and inserts into the cache.
 
-### `destroy(id: String): Boolean`
+### `destroy(id: String): Promise<Boolean>`
 
 Accepts an ID, and removes it from the cache.
