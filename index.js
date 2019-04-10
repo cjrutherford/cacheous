@@ -97,6 +97,7 @@ class Cacheous {
       const list = await this.getIdList();
       await this.modelCache.set('idList', list.filter(x => x !== id));
       await this.modelCache.delete(id);
+      return true;
     } catch (e) {
       throw new Error(e);
     }
