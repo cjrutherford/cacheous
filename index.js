@@ -83,7 +83,6 @@ class Cacheous {
     try {
       s.id = s.id === undefined ? uuid.v4() : s.id;
       const result = await this.validate(s);
-      console.log(result);
       await this.modelCache.set(result.id, result);
       await this.addToIdList(result.id);
       return result;
