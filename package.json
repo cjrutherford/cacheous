@@ -4,7 +4,10 @@
   "main": "index.js",
   "license": "MIT",
   "dependencies": {
+    "@keyv/mongo": "^1.1.0",
+    "@keyv/sqlite": "^2.0.0",
     "keyv": "^3.1.0",
+    "schm": "^0.4.1",
     "uuid": "^3.3.2"
   }
 }

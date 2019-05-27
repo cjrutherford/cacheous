@@ -1,5 +1,6 @@
 const Keyv = require('keyv');
 const uuid = require('uuid');
+const Schema = require('schm');
 
 class Cacheous {
   constructor({ name, storeURI, schema }) {
@@ -53,6 +54,21 @@ class Cacheous {
     }
   }
 
+  async getList([...ids]) {
+    console.log(ids);
+    try {
+      const itemList = await ids.map(i => {
+        console.log(i);
+        return this.modelCache.get(i).then(item => {
+          return item;
+        });
+      });
+      return await itemList;
+    } catch (error) {
+      throw new Error(error);
+    }
+  }
+
   async getById(id) {
     try {
       return await this.modelCache.get(id);
@@ -83,6 +99,7 @@ class Cacheous {
     try {
       s.id = s.id === undefined ? uuid.v4() : s.id;
       const result = await this.validate(s);
+      result.id = s.id;
       await this.modelCache.set(result.id, result);
       await this.addToIdList(result.id);
       return result;
@@ -102,5 +119,7 @@ class Cacheous {
     }
   }
 }
+
+Cacheous.Schema = Schema;
 
 module.exports = Cacheous;
